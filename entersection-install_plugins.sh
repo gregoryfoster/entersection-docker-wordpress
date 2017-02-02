@@ -1,7 +1,6 @@
 #!/bin/bash
 
 WORDPRESS_PLUGINS=(
-    addthis
     admin-commenters-comments-count
     amazon-machine-tags
     antispam-bee
@@ -14,7 +13,7 @@ WORDPRESS_PLUGINS=(
     fancybox-for-wordpress
     flash-video-player
     force-strong-passwords
-    google-analyticator
+    google-analytics-for-wordpress
     google-sitemap-generator
     oembed-for-comments
     search-meter
@@ -25,12 +24,11 @@ WORDPRESS_PLUGINS=(
     twitter-for-wordpress
     wordfence
     wordpress-https
+    wp-mail-smtp
     ?-wp-recaptcha
-    wp-recentcomments
     wp-relativedate
     wp-super-cache
     ?-ylsy_search_excerpt
-    zemanta
 )
 
 # Use WP-CLI to install the plugin load
