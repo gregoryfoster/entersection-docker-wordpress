@@ -1,5 +1,5 @@
 # Docker container image for Entersection WordPress instance
-FROM wordpress:latest
+FROM bitnami/wordpress:latest
 MAINTAINER gregoryfoster <greg@foojutsu.com>
 
 ENV WORDPRESS_DB_NAME=wp_entersection \
