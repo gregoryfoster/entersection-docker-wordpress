@@ -19,4 +19,4 @@ RUN curl -L "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 
 # Copy post-installation scripts
 COPY entersection-update_options.sh /entersection-update_options.sh
-COPY entersection-install_plugins.sh /entersection-install_plugins.sh
+COPY entersection-manage_plugins.sh /entersection-manage_plugins.sh

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WORDPRESS_PLUGINS=(
+PLUGINS_TO_INSTALL=(
     admin-commenters-comments-count
     amazon-machine-tags
     antispam-bee
@@ -32,9 +32,23 @@ WORDPRESS_PLUGINS=(
 )
 
 # Use WP-CLI to install the plugin load
-if [ -n $WORDPRESS_PLUGINS ]; then
-for plugin_id in ${WORDPRESS_PLUGINS[@]}; do
+if [ -n $PLUGINS_TO_INSTALL ]; then
+for plugin_id in ${PLUGINS_TO_INSTALL[@]}; do
 	echo "$plugin_id";
   wp plugin install $plugin_id --activate --path=/var/www/html --color --allow-root
+done
+fi
+
+
+PLUGINS_TO_DELETE=(
+    akismet
+    hello-dolly
+)
+
+# Use WP-CLI to delete unnecessary stock plugins
+if [ -n $PLUGINS_TO_DELETE ]; then
+for plugin_id in ${PLUGINS_TO_DELETE[@]}; do
+	echo "$plugin_id";
+  wp plugin delete $plugin_id --path=/var/www/html --color --allow-root
 done
 fi
