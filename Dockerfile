@@ -1,4 +1,5 @@
 # Docker container image for Entersection WordPress instance
+# https://github.com/bitnami/bitnami-docker-wordpress
 FROM bitnami/wordpress:latest
 MAINTAINER gregoryfoster <greg@foojutsu.com>
 

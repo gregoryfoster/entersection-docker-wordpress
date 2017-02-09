@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# Path to WordPress
+WORDPRESS_ROOT=/bitnami/wordpress
+
 # Use WP-CLI to update the siteurl and home options to use the IP address
 # of the Docker machine this container's port 80 is forwarded to.
-wp option set siteurl http://localhost --path=/var/www/html --allow-root
-wp option set home http://localhost --path=/var/www/html --allow-root
+wp option set siteurl http://localhost --path=$WORDPRESS_ROOT --allow-root
+wp option set home http://localhost --path=$WORDPRESS_ROOT --allow-root
 
 
 # Use WP-CLI to delete unnecessary stock plugins
@@ -15,7 +18,7 @@ PLUGINS_TO_DELETE=(
 if [ -n $PLUGINS_TO_DELETE ]; then
 for plugin_id in ${PLUGINS_TO_DELETE[@]}; do
 	echo "$plugin_id";
-  wp plugin delete $plugin_id --path=/var/www/html --color --allow-root
+  wp plugin delete $plugin_id --path=$WORDPRESS_ROOT --color --allow-root
 done
 fi
 
@@ -55,7 +58,7 @@ PLUGINS_TO_INSTALL=(
 if [ -n $PLUGINS_TO_INSTALL ]; then
 for plugin_id in ${PLUGINS_TO_INSTALL[@]}; do
 	echo "$plugin_id";
-  wp plugin install $plugin_id --activate --path=/var/www/html --color --allow-root
+  wp plugin install $plugin_id --activate --path=$WORDPRESS_ROOT --color --allow-root
 done
 fi
 
@@ -70,6 +73,6 @@ THEMES_TO_DELETE=(
 if [ -n $THEMES_TO_DELETE ]; then
 for theme_id in ${THEMES_TO_DELETE[@]}; do
 	echo "$theme_id";
-  wp theme delete $theme_id --path=/var/www/html --color --allow-root
+  wp theme delete $theme_id --path=$WORDPRESS_ROOT --color --allow-root
 done
 fi
