@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# Use WP-CLI to update the siteurl and home options to use the IP address
+# of the Docker machine this container's port 80 is forwarded to.
+wp option set siteurl http://localhost --path=/var/www/html --allow-root
+wp option set home http://localhost --path=/var/www/html --allow-root
+
+
+# Use WP-CLI to delete unnecessary stock plugins
+PLUGINS_TO_DELETE=(
+    akismet
+    hello-dolly
+)
+
+if [ -n $PLUGINS_TO_DELETE ]; then
+for plugin_id in ${PLUGINS_TO_DELETE[@]}; do
+	echo "$plugin_id";
+  wp plugin delete $plugin_id --path=/var/www/html --color --allow-root
+done
+fi
+
+
+# Use WP-CLI to install the Entersection plugin load
 PLUGINS_TO_INSTALL=(
     admin-commenters-comments-count
     amazon-machine-tags
@@ -31,7 +52,6 @@ PLUGINS_TO_INSTALL=(
     ?-ylsy_search_excerpt
 )
 
-# Use WP-CLI to install the plugin load
 if [ -n $PLUGINS_TO_INSTALL ]; then
 for plugin_id in ${PLUGINS_TO_INSTALL[@]}; do
 	echo "$plugin_id";
@@ -40,15 +60,16 @@ done
 fi
 
 
-PLUGINS_TO_DELETE=(
-    akismet
-    hello-dolly
+# Use WP-CLI to delete the stock themes
+THEMES_TO_DELETE=(
+    twentyfifteen
+    twentysixteen
+    twentyseventeen
 )
 
-# Use WP-CLI to delete unnecessary stock plugins
-if [ -n $PLUGINS_TO_DELETE ]; then
-for plugin_id in ${PLUGINS_TO_DELETE[@]}; do
-	echo "$plugin_id";
-  wp plugin delete $plugin_id --path=/var/www/html --color --allow-root
+if [ -n $THEMES_TO_DELETE ]; then
+for theme_id in ${THEMES_TO_DELETE[@]}; do
+	echo "$theme_id";
+  wp theme delete $theme_id --path=/var/www/html --color --allow-root
 done
 fi

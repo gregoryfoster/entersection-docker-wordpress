@@ -17,6 +17,5 @@ RUN apt-get update \
 RUN curl -L "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" > /usr/bin/wp \
  && chmod +x /usr/bin/wp
 
-# Copy post-installation scripts
-COPY entersection-update_options.sh /entersection-update_options.sh
-COPY entersection-manage_plugins.sh /entersection-manage_plugins.sh
+# Copy post-installation script
+COPY entersection-configure_wordpress.sh /entersection-configure_wordpress.sh
